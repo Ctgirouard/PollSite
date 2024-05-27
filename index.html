@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Caesar Cipher Decoder</title>
+</head>
+<body>
+    <h1>Caesar Cipher Decoder</h1>
+    <p>Enter the encoded message and decode it!</p>
+    <input type="text" id="encodedMessage" placeholder="Enter encoded message">
+    <button onclick="decodeMessage()">Decode</button>
+    <p id="decodedMessage"></p>
+    <img src="ThatsWhatIWouldaDid.gif" alt="Fun GIF" style="margin-top: 20px;">
+
+    <script>
+        function decodeMessage() {
+            var encoded = document.getElementById('encodedMessage').value;
+            var decoded = caesarCipher(encoded, -5);
+            document.getElementById('decodedMessage').innerText = decoded;
+        }
+
+        function caesarCipher(str, shift) {
+            return str.replace(/[a-z]/gi, function(char) {
+                var start = char <= 'Z' ? 65 : 97;
+                return String.fromCharCode(((char.charCodeAt(0) - start + shift + 26) % 26) + start);
+            });
+        }
+    </script>
+</body>
+</html>
